@@ -34,30 +34,31 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+        // TODO: Cast to HTTP servlet request/response
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        
+        // TODO: Get request URI and context path
         String requestURI = httpRequest.getRequestURI();
         String contextPath = httpRequest.getContextPath();
+        // TODO: Extract path (remove context path)
         String path = requestURI.substring(contextPath.length());
         
-        // Check if this is a public URL
+         // TODO: Check if URL is public
         if (isPublicUrl(path)) {
             // Allow access to public URLs
             chain.doFilter(request, response);
             return;
         }
         
-        // Check if user is logged in
+        // TODO: Check if user is logged in
         HttpSession session = httpRequest.getSession(false);
         boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
         
         if (isLoggedIn) {
-            // User is logged in, allow access
+            // TODO: If logged in, continue
             chain.doFilter(request, response);
         } else {
-            // User not logged in, redirect to login
+            // TODO: If not, redirect to login
             String loginURL = contextPath + "/login";
             httpResponse.sendRedirect(loginURL);
         }
@@ -65,6 +66,7 @@ public class AuthFilter implements Filter {
     
     @Override
     public void destroy() {
+        // TODO: Log destruction
         System.out.println("AuthFilter destroyed");
     }
     

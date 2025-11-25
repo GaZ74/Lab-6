@@ -27,25 +27,26 @@ public class AdminFilter implements Filter {
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // TODO: Log initialization
         System.out.println("AdminFilter initialized");
     }
     
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+        // TODO: Cast to HTTP types
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        
+        // TODO: Get action parameter
         String action = httpRequest.getParameter("action");
         
-        // Check if this action requires admin role
+        // TODO: Check if action requires admin role
         if (isAdminAction(action)) {
             HttpSession session = httpRequest.getSession(false);
-            
+            // TODO: Get session and user
             if (session != null) {
                 User user = (User) session.getAttribute("user");
-                
+                // TODO: Check if user is admin
                 if (user != null && user.isAdmin()) {
                     // User is admin, allow access
                     chain.doFilter(request, response);
@@ -66,6 +67,7 @@ public class AdminFilter implements Filter {
     
     @Override
     public void destroy() {
+        // TODO: Log destruction
         System.out.println("AdminFilter destroyed");
     }
     

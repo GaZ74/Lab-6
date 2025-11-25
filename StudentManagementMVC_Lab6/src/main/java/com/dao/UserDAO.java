@@ -172,6 +172,20 @@ public class UserDAO {
         user.setLastLogin(rs.getTimestamp("last_login"));
         return user;
     }
+            public boolean updatePassword(int userId, String newHashedPassword) {
+    // Update user's password in database
+    String sql = "UPDATE users SET password=? WHERE id=?";
+    try (Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, newHashedPassword);
+        stmt.setInt(2, userId);
+        return stmt.executeUpdate() > 0;
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+    }
     
     /**
      * Test method - Generate hashed password
