@@ -1,0 +1,7 @@
+<head>
+<style type = "text/css"> 
+.medium { border-width: medium}
+.groove {border-style: groove}
+.blue {border-color: blue;}
+</style>
+</head>

@@ -1,0 +1,20 @@
+
+.logo {
+    width: 120px;
+    display: block;
+    margin: 10px;
+}
+h2 {color:rgb(36, 131, 120)}
+.border {
+border-width: 2px;
+border-style: solid;
+border-color: blue;
+width: 450px;
+padding: 10px;
+
+}
+form.aligned {
+    width: 320px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
